@@ -8,8 +8,10 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 var debug = require('debug')('angular2-nodejs:server');
 
+app.use(express.static(__dirname + '/dist/chat-app'));
+console.log(__dirname + '\dist\chat-app')
 app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + 'index.html'));
+    res.sendFile(path.join(__dirname + '\dist\chat-app\index.html'));
   });
 // app.set('/*', path.join(__dirname, 'index.html'));
 // app.set('view engine', 'hbs');

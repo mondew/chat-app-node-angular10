@@ -8,7 +8,8 @@ var io = require('socket.io').listen(server);
 var debug = require('debug')('angular2-nodejs:server');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-app.use(express.static(__dirname + 'index.html'));
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
 // console.log(__dirname + '\dist\chat-app')
 // app.get('/*', function(req, res) {
 //     res.sendFile(path.join(__dirname + '\dist\chat-app\index.html'));
@@ -45,6 +46,9 @@ function normalizePort(val) {
     }
     return false;
   }
+  app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 server.listen(port, () => {
     console.log(`started on port: ${port}`);
 });

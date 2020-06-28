@@ -1,6 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import * as io from 'socket.io-client';
 import {Observable} from 'rxjs';
+ @Injectable()
 export class ChatService{
     private socket = io('http://localhost:3000' );
     

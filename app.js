@@ -3,11 +3,11 @@ let app = express();
 let http = require('http');
 var path = require('path');
 
-const port = process.env.PORT || 3000;
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 var debug = require('debug')('angular2-nodejs:server');
-
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 app.use(express.static(__dirname + 'index.html'));
 // console.log(__dirname + '\dist\chat-app')
 // app.get('/*', function(req, res) {
@@ -33,7 +33,18 @@ io.on('connection',(socket)=>{
       io.in(data.room).emit('new message', {user:data.user, message:data.message});
     })
 });
-
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+    if (isNaN(port)) {
+      // named pipe
+      return val;
+    }
+    if (port >= 0) {
+      // port number
+      return port;
+    }
+    return false;
+  }
 server.listen(port, () => {
     console.log(`started on port: ${port}`);
 });

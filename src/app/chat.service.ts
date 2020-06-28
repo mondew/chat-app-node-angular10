@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
 import * as io from 'socket.io-client';
-import {Observable} from 'rxjs'
+import {Observable} from 'rxjs';
 export class ChatService{
-
-    private socket = io('http://localhost:3000');
-    joinRoom(data)
-    {
+    private socket = io('http://localhost:3000' );
+    
+    joinRoom(data){
         this.socket.emit('join',data);
     }
     newUserJoined()

@@ -9,7 +9,7 @@ var debug = require('debug')('angular2-nodejs:server');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '.\index.html')));
 // console.log(__dirname + '\dist\chat-app')
 // app.get('/*', function(req, res) {
 //     res.sendFile(path.join(__dirname + '\dist\chat-app\index.html'));
@@ -60,3 +60,4 @@ function onListening() {
       : 'port ' + addr.port;
     debug('Listening on ' + bind);
   }
+  module.exports = app;

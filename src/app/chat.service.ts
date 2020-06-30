@@ -3,7 +3,7 @@ import * as io from 'socket.io-client';
 import {Observable} from 'rxjs';
  @Injectable()
 export class ChatService{
-    private socket = io('http://localhost:3000' );
+    private socket = io('https://gapshap-app.herokuapp.com' );
     
     joinRoom(data){
         this.socket.emit('join',data);
